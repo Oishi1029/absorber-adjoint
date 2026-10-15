@@ -151,8 +151,8 @@ def fig2():
             g = ta.reflection(stack, fq, np.deg2rad(a), pol)
             ax.plot(fq / 1e9, 20 * np.log10(np.abs(g)), ls, c=c, lw=1.0)
         ax.axhline(-10, c=GRAY, ls="--", lw=0.8)
-        ax.set_ylim(-42, 0)
-        ax.set_yticks([0, -10, -20, -30, -40])
+        ax.set_ylim(-62, 0)
+        ax.set_yticks([0, -10, -20, -30, -40, -50, -60])
         ax.grid(True)
         ax.text(0.985, 0.06, pol, transform=ax.transAxes, ha="right",
                 fontsize=8, fontweight="bold")

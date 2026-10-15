@@ -7,8 +7,8 @@ This repository contains the complete implementation and every verification and
 figure script behind the paper:
 
 > B. B. Yong, "Analytic Adjoint Sensitivity Analysis for Multilayer Microwave
-> Absorber Synthesis at Oblique Incidence," submitted to IEEE APACE 2026,
-> Melaka, Malaysia.
+> Absorber Synthesis at Oblique Incidence," accepted for IEEE APACE 2026,
+> Melaka, Malaysia, 8–10 December 2026.
 
 ## What it does
 
@@ -33,6 +33,7 @@ independent of *N*, against 2*N* forward solves for central finite differences.
 | `g4_scaling.py` | Speed-up vs number of design variables (identically instrumented protocol) |
 | `g4_variance.py` | Seed-robustness of the speed-up at N = 10 |
 | `figures.py` | The three paper figures |
+| `tolerance_angle_check.py` | Angular degradation beyond the design range and a 2000-sample manufacturing-tolerance Monte Carlo, with the adjoint first-order sensitivities at the worst-case point (camera-ready additions) |
 | `g5_page_budget.py` | Page-budget measurement against the conference template |
 
 ## Run it
