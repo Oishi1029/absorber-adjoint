@@ -6,7 +6,7 @@ synthesis at oblique incidence.
 This repository contains the complete implementation and every verification and
 figure script behind the paper:
 
-> B. B. Yong, "Analytic Adjoint Sensitivity Analysis for Multilayer Microwave
+> B. Y. Bong, "Analytic Adjoint Sensitivity Analysis for Multilayer Microwave
 > Absorber Synthesis at Oblique Incidence," accepted for IEEE APACE 2026,
 > Melaka, Malaysia, 8–10 December 2026.
 
