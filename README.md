@@ -27,8 +27,8 @@ independent of *N*, against 2*N* forward solves for central finite differences.
 | `tmm_adjoint.py` | Forward model + closed-form adjoint Jacobian (the paper's method) |
 | `tmm_mp.py` | 50-digit-arithmetic reference implementation (mpmath) |
 | `g1_adjoint_check.py` | Gradient verification: 1376 comparisons vs 50-digit central differences (worst 7.8e-14), double-precision step-size plateau with conditioning-predicted floor |
-| `g2_forward_check.py` | Forward verification vs scikit-rf (1.7e-13), closed-form Salisbury screen, independent impedance recursion |
-| `g4_synthesis.py` | Wideband wide-angle Jaumann synthesis, adjoint L-BFGS-B vs differential evolution |
+| `g2_forward_check.py` | Forward verification vs scikit-rf (1.6e-13), closed-form Salisbury screen, independent impedance recursion |
+| `g4_synthesis.py` | Wideband wide-angle Jaumann synthesis (the Fig. 2 design). Its differential-evolution line is the superseded first comparison (untuned baseline); the paper's comparison is `g4_scaling.py` |
 | `g4_fairness.py` | Baseline fairness audit: DE hyper-parameter sweep, dual annealing, tolerance-matched accounting |
 | `g4_scaling.py` | Speed-up vs number of design variables (identically instrumented protocol) |
 | `g4_variance.py` | Seed-robustness of the speed-up at N = 10 |
@@ -43,11 +43,14 @@ python -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
 python g2_forward_check.py     # forward model verification
 python g1_adjoint_check.py    # gradient verification
-python g4_synthesis.py        # synthesis + baseline comparison
+python g4_synthesis.py        # Fig. 2 synthesis (also prints a superseded first comparison)
+python g4_scaling.py          # Fig. 3: speed-up vs number of design variables (about 55 min)
 python figures.py             # regenerate the paper figures
 ```
 
-Total compute for every result in the paper is minutes on a laptop CPU.
+Total compute for every result in the paper is within about an hour on a
+laptop CPU; the scaling benchmark alone takes about 55 minutes, and every other
+script takes seconds to a few minutes.
 
 ## Provenance
 

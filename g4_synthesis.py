@@ -1,5 +1,14 @@
 """
-G4 -- there is a headline number.
+G4 -- the Fig. 2 synthesis, plus the superseded first baseline comparison.
+
+NOTE (October 2026).  This script produces the paper's Fig. 2 design.  Its
+differential-evolution comparison is the FIRST comparison made during the
+project: a single untuned DE configuration, read when it first matched the
+adjoint's objective exactly.  A later fairness audit showed that this baseline
+was mis-configured, so the ratio this script prints is SUPERSEDED and is not a
+result of the paper.  The paper's speed-up figures (Fig. 3) come from
+g4_scaling.py, with the baseline tuned in g4_fairness.py and both methods read
+at a matched tolerance.
 
 Design problem (a classical Jaumann absorber, all parameters manufacturable):
 
@@ -14,7 +23,7 @@ Objective (smooth surrogate for the minimax):
     F(x) = ( mean over (f,theta,pol) of |Gamma|^(2p) ) ^ (1/2p),   p = 8
 so F -> max |Gamma| as p grows, and dF/dx follows from the analytic adjoint.
 
-Comparison protocol, deliberately conservative towards the baseline:
+First comparison protocol (superseded; see the note above):
   * identical objective, identical box bounds, identical normalised search space
   * multi-start adjoint L-BFGS-B; every restart's cost is charged
   * SciPy differential_evolution with polish=False, so no gradient information
@@ -228,7 +237,10 @@ def main():
               f"forward solves")
         print(f"    adjoint needed                   : {ctr_a.fwd:.0f} "
               f"forward solves")
-        print(f"\n  >>> G4 SPEED-UP = {ratio:.1f}x  fewer forward solves")
+        print(f"\n  superseded first comparison (untuned DE, exact match): "
+              f"{ratio:.1f}x; NOT a result of the paper.")
+        print("  The paper's tolerance-matched comparison against a tuned "
+              "baseline is g4_scaling.py (Fig. 3).")
         ok = ratio >= 3.0
     else:
         ratio = float(ctr_d.fwd) / ctr_a.fwd
@@ -236,10 +248,11 @@ def main():
               f"solves ({ctr_d.calls} evaluations).")
         print(f"  >>> DE best {ctr_d.best:.8f} vs adjoint {F_a:.8f} "
               f"({20*np.log10(ctr_d.best)-20*np.log10(F_a):+.2f} dB worse)")
-        print(f"  >>> LOWER BOUND on speed-up = {ratio:.1f}x")
+        print(f"  superseded first comparison, lower bound: {ratio:.1f}x; "
+              f"NOT a result of the paper (see g4_scaling.py).")
         ok = ratio >= 3.0
 
-    print(f"\n  G4 VERDICT: {'PASS' if ok else 'FAIL'} (target >= 3x)")
+    # (the original "G4 VERDICT" line is retired with the comparison above)
 
     # ------------------------------------------------------------------
     stack = x_to_stack(x_a)

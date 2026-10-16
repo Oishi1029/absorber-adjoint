@@ -14,9 +14,11 @@ This script fixes it:
     with like.
   * The adjoint's restarts are charged cumulatively: if restart 1 succeeds, the
     adjoint is charged only for restart 1.
-  * The derivative-free baseline is given its best hyper-parameters, taken from
-    the sweep in g4_fairness.py (small population, immediate updating, which is
-    markedly stronger than SciPy's defaults on this problem).
+  * The derivative-free baseline is run with three settings from the sweep in
+    g4_fairness.py, including the best one (population 8, immediate updating),
+    and the cheapest of the three is kept at each tolerance.  On the Fig. 2
+    problem that best setting reaches the 0.25 dB target about 1.6 times faster
+    than SciPy's default settings.
   * The experiment is repeated across problem sizes, because the claim being
     tested is not "the adjoint is faster" but "the adjoint's advantage grows
     with the number of design variables", which is what the O(N)-versus-2N

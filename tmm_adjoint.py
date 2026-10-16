@@ -33,7 +33,8 @@ Termination: PEC, Z_L = 0.  Hence with v = M @ [0, 1]^T = [B, D]^T,
 
 Adjoint sensitivity
 -------------------
-With M = M_1 M_2 ... M_K and Gamma = w(v)^T v where v = M e2:
+With M = M_1 M_2 ... M_K and v = M e2 = [B, D]^T, a perturbation of v changes
+Gamma by dGamma = w^T dv, where w = dGamma/dv (the adjoint seed):
 
     backward sweep   r_{K+1} = e2,   r_k = M_k r_{k+1}         (K matvecs)
     w from B = r_1[0], D = r_1[1]
